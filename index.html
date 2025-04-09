@@ -26,17 +26,21 @@
         img {
             max-width: 300px;
             height: auto;
+            opacity: 0; /* Start fully transparent */
+            transition: opacity 0.5s ease-in-out; /* Smooth transition */
         }
     </style>
 </head>
 <body>
     <h1>SWD</h1>
-    <img src="https://i.ebayimg.com/images/g/XuMAAOSwH0Vjih2y/s-l1600.webp" alt="Pink Squidgy Stress Toy">
+    <img id="squidgyImage" src="https://i.ebayimg.com/images/g/XuMAAOSwH0Vjih2y/s-l1600.webp" alt="Pink Squidgy Stress Toy">
     <div id="counter"></div>
 
     <script>
         // Set the target date to Friday, April 11, 2025, 9:00 AM GMT
         const targetDate = new Date('2025-04-11T09:00:00Z');
+        const startDate = new Date(); // When the countdown starts (now)
+        const totalDuration = targetDate - startDate; // Total time in milliseconds
 
         function updateCounter() {
             const now = new Date();
@@ -44,6 +48,7 @@
 
             if (timeDifference <= 0) {
                 document.getElementById('counter').innerText = "Time's up!";
+                document.getElementById('squidgyImage').style.opacity = 1; // Fully visible at end
                 return;
             }
 
@@ -53,6 +58,11 @@
 
             document.getElementById('counter').innerText = 
                 `${hours} hours, ${minutes} minutes, ${seconds} seconds remaining`;
+
+            // Calculate opacity based on progress
+            const timeElapsed = totalDuration - timeDifference;
+            const progress = timeElapsed / totalDuration; // 0 (start) to 1 (end)
+            document.getElementById('s ZodigyImage').style.opacity = progress;
         }
 
         // Update counter immediately and then every second
