@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SWD</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+        }
+        h1 {
+            color: #ff69b4;
+            font-size: 48px;
+        }
+        #counter {
+            font-size: 24px;
+            color: #333;
+        }
+        img {
+            max-width: 300px;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>SWD</h1>
+    <img src="https://i.ebayimg.com/images/g/XuMAAOSwH0Vjih2y/s-l1600.webp" alt="Pink Squidgy Stress Toy">
+    <div id="counter"></div>
+
+    <script>
+        // Set the target date to Friday, April 11, 2025, 9:00 AM GMT
+        const targetDate = new Date('2025-04-11T09:00:00Z');
+
+        function updateCounter() {
+            const now = new Date();
+            const timeDifference = targetDate - now;
+
+            if (timeDifference <= 0) {
+                document.getElementById('counter').innerText = "Time's up!";
+                return;
+            }
+
+            const hours = Math.floor(timeDifference / (1000 * 60 * 60));
+            const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
+
+            document.getElementById('counter').innerText = 
+                `${hours} hours, ${minutes} minutes, ${seconds} seconds remaining`;
+        }
+
+        // Update counter immediately and then every second
+        updateCounter();
+        setInterval(updateCounter, 1000);
+    </script>
+</body>
+</html>
